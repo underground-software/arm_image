@@ -4,6 +4,6 @@ all:
 deps:
 	dnf install -y imagefactory imagefactory-plugins* libvirt
 	modprobe fuse
-	sysmtectl enable libvirt && systemctl start libvirt
+	systemctl enable libvirtd && systemctl start libvirtd
 	sed -i -e 's/# memory = 1024/memory = 4096/' /etc/oz/oz.cfg
 
