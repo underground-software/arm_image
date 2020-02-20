@@ -19,12 +19,9 @@ services --enabled="sshd,NetworkManager,avahi-daemon,chronyd,initial-setup,zram-
 # System bootloader configuration
 bootloader --location=mbr
 # Disk partitioning information
-clearpart --all
-zerombr
-autopart
-#part /boot/efi --asprimary --fstype="vfat" --size=80
-#part /boot --asprimary --fstype="ext4" --size=512
-#part / --fstype="ext4" --size=1400
+part /boot/efi --asprimary --fstype="vfat" --size=80
+part /boot --asprimary --fstype="ext4" --size=512
+part / --fstype="ext4" --size=1400
 
 %post
 
@@ -34,7 +31,7 @@ cp -P /usr/share/uboot/rpi_3_32b/u-boot.bin /boot/efi/rpi3-u-boot.bin
 
 # work around for poor key import UI in PackageKit
 rm -f /var/lib/rpm/__db*
-releasever=$(rpm -q --qf '%{version}\n' fedora-release)
+releasever=$(rpm --eval '%{fedora}')
 basearch=armhfp
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 echo "Packages within this ARM disk image"
@@ -51,10 +48,6 @@ echo "Disabling tmpfs for /tmp."
 systemctl mask tmp.mount
 
 dnf -y remove dracut-config-generic
-
-# Disable network service here, as doing it in the services line
-# fails due to RHBZ #1369794
-/sbin/chkconfig network off
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id
@@ -78,7 +71,6 @@ echo .
 @hardware-support
 NetworkManager-wifi
 bcm283x-firmware
-chkconfig
 chrony
 dracut-config-generic
 extlinux-bootloader

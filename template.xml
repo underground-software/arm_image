@@ -1,11 +1,11 @@
 <template>
-    <name>fedora-30</name>
+    <name>fedora-31</name>
     <os>
         <name>Fedora</name>
-        <version>30</version>
+        <version>31</version>
         <arch>aarch64</arch>
         <install type='url'>
-	    <url>https://dl.fedoraproject.org/pub/fedora/linux/releases/30/Everything/aarch64/os/</url>
+	    <url>https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/aarch64/os/</url>
         </install>
         <rootpw>rpi</rootpw>
     </os>
