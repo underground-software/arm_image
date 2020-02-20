@@ -19,9 +19,12 @@ services --enabled="sshd,NetworkManager,avahi-daemon,chronyd,initial-setup,zram-
 # System bootloader configuration
 bootloader --location=mbr
 # Disk partitioning information
-part /boot/efi --asprimary --fstype="vfat" --size=80
-part /boot --asprimary --fstype="ext4" --size=512
-part / --fstype="ext4" --size=1400
+clearpart --all
+zerombr
+autopart
+#part /boot/efi --asprimary --fstype="vfat" --size=80
+#part /boot --asprimary --fstype="ext4" --size=512
+#part / --fstype="ext4" --size=1400
 
 %post
 
