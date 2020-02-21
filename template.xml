@@ -2,7 +2,7 @@
     <name>fedora-31</name>
     <os>
         <name>Fedora</name>
-        <version>31</version>
+        <version>30</version>
         <arch>aarch64</arch>
         <install type='url'>
 	    <url>https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/aarch64/os/</url>
